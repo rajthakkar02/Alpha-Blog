@@ -1,16 +1,25 @@
-<%= render "error" %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <%= render "shared/error" %>
+      <%= form_with model: @article , local: true do |f| %>
 
-<%= form_with model: @article , local: true do |f| %>
+        <div class="form-group row">
+          <%= f.label :title , class: "form-label text-light fs-5 px-0"%>
+          <%= f.text_field :title , class:"form-control" , placeholder: "Enter title"%>
+        </div>
 
-  <p>
-    <%= f.label :title%><br>
-    <%= f.text_field :title%>
-  </p>
+        <div class="form-group row mt-3">
+          <%= f.label :description , class: "form-label text-light fs-5 px-0" %>
+          <%= f.text_area :description , class: "form-control", rows:15, placeholder: "Enter description" %>
+        </div>
 
-  <p>
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </p>
+        <div class="form-group mt-3">
+          <%= f.submit class:"btn btn-primary" %>
+        </div>
 
-  <%= f.submit %>
-<% end %>
+      <% end %>
+    </div>
+    <%= link_to "Cancel and return to article listing" , articles_path, class: "text-center" %>
+  </div>
+</div>
