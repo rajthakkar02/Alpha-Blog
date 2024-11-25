@@ -1,8 +1,8 @@
-<% if @article.errors.any? %>
+<% if obj.errors.any? %>
   <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <h4 class="alert-heading">Oops! Something went wrong and we couldn't save your article. Please address the following issues:</h4>
+    <h4 class="alert-heading">Oops! Something went wrong and we couldn't save your <%= obj.class.name.downcase %>. Please address the following issues:</h4>
     <ul>
-      <% @article.errors.full_messages.each do |error| %>
+      <% obj.errors.full_messages.each do |error| %>
         <li><%= error %></li>
       <% end %>
     </ul>
