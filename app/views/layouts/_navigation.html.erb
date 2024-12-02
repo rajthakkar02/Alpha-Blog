@@ -14,7 +14,6 @@
             Articles
           </a>
           <ul class="dropdown-menu">
-            <%# <li><a class="" href="#">Action</a></li> %>
             <li><%= link_to "New Article", new_article_path , class:"dropdown-item" %></li>
             <li><%= link_to "View Articles", articles_path , class:"dropdown-item" %></li>
             <li><hr class="dropdown-divider"></li>
@@ -22,12 +21,18 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          <% if logged_in? %>
+            <%= link_to current_user.username , user_path(current_user) , class: "nav-link" %>
+          <% end %>
         </li>
       </ul>
       <form class="d-md-flex gap-3">
-        <%= link_to "Login" , login_path , class: "btn btn-outline-primary"%>
-        <%= link_to "Logout" , login_path , data:{turbo_method: "delete"} , class: "btn btn-danger"%>
+        <% if logged_in? %>
+          <%= link_to "Logout" , login_path , data:{turbo_method: "delete"} , class: "btn btn-danger"%>
+        <% else %>
+          <%= link_to "Login" , login_path , class: "btn btn-primary"%>
+          <%= link_to "Sign up" , signup_path , class: "btn btn-primary"%>
+        <% end %>
       </form>
     </div>
   </div>
